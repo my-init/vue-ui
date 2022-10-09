@@ -161,15 +161,20 @@ const parseDemo = (content: string) => {
   };
 };
 
+let flag = false;
 export default defineConfig({
   lang: "zh-CN",
   title: "vue3 ui libarary",
   description: "Just playing around.",
-  base: process.env.NODE_ENV === 'production' ? '/vue-ui/' : '',
+  base: process.env.NODE_ENV === "production" ? "/vue-ui/" : "",
   lastUpdated: true,
   markdown: {
     lineNumbers: true,
     config(md) {
+      // BUG: 咱也不懂为啥 config 被调用了两次
+      if (flag) return;
+      flag = true;
+
       const addHtmlDemoRender = (type: "html_inline" | "html_block") => {
         const defaultRender = md.renderer.rules[type]!;
         md.renderer.rules[type] = (tokens, idx, options, env, self) => {
@@ -178,8 +183,10 @@ export default defineConfig({
           if (!/^<Demo\s+/.test(content)) {
             return defaultRender(tokens, idx, options, env, self);
           }
-          const { demoContent, slotContent, src, title, desc } =
-            parseDemo(content);
+
+          const { demoContent, slotContent, src, title, desc } = parseDemo(
+            content.trim()
+          );
           const { cmpName, rawCode, highlightedCode, lang } = makeSetupScript(
             env,
             md,
@@ -274,6 +281,6 @@ export default defineConfig({
     ],
   },
   vite: {
-    plugins: [PluginParseDemo(),vueJsx()],
+    plugins: [PluginParseDemo(), vueJsx()],
   },
 });
