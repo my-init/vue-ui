@@ -6,6 +6,7 @@ import path from "node:path";
 import { parse, compileTemplate, compileScript } from "vue/compiler-sfc";
 import { transform } from "sucrase";
 import { baseParse } from "@vue/compiler-core";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 
 const REGEXP_SRC = /\ssrc\=['"](.+)['"]/;
 
@@ -177,7 +178,7 @@ export default defineConfig({
         md.renderer.rules[type] = (tokens, idx, options, env, self) => {
           const { content } = tokens[idx];
 
-          if (!/^<Demo/.test(content)) {
+          if (!/^<Demo\s+/.test(content)) {
             return defaultRender(tokens, idx, options, env, self);
           }
           const { demoContent, slotContent, src, title, desc } =
@@ -257,8 +258,8 @@ export default defineConfig({
   themeConfig: {
     nav: [
       {
-        text: "Components",
-        link: "",
+        text: "Code",
+        link: "https://github.com/my-init/vue-ui",
       },
     ],
     sidebar: [
@@ -276,6 +277,6 @@ export default defineConfig({
     ],
   },
   vite: {
-    plugins: [PluginParseDemo()],
+    plugins: [PluginParseDemo(),vueJsx()],
   },
 });

@@ -29,7 +29,6 @@
 <DemoButton type="warning">按钮</DemoButton>
 <DemoButton type="danger">按钮</DemoButton>
 ```
-
 :::
 
 
