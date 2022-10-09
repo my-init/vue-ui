@@ -118,10 +118,6 @@ const makeSetupScript = (
 };
 
 const parseDemo = (content: string) => {
-  const res = {
-    src: "",
-    code: "",
-  };
   const { props = [], children = [] } = baseParse(content).children[0];
 
   let srcProp: any = null;
@@ -271,8 +267,8 @@ export default defineConfig({
       {
         text: "Components",
         items: [
-          { text: "DemoButton", link: "/cmp-doc/button" },
           { text: "DemoInput", link: "/cmp-doc/input" },
+          { text: "DemoButton", link: "/cmp-doc/button" },
         ],
       },
     ],
