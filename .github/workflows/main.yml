@@ -1,4 +1,6 @@
 name: pnpm Example Workflow
+permissions:
+  contents: write
 on:
   push:
 jobs:
