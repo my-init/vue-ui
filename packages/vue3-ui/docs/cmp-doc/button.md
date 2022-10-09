@@ -57,4 +57,3 @@ const onClick = () => counter.value++
 </script>
 ```
 :::
-
