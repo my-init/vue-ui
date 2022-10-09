@@ -21,7 +21,7 @@ jobs:
       run: pnpm install
     - name: Build Docs
       run: pnpm --filter @yo-demo/vue3-ui docs:build
-    - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: packages/vue3-ui/docs/.vitepress/dist # The folder the action should deploy.
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: packages/vue3-ui/docs/.vitepress/dist # The folder the action should deploy.
