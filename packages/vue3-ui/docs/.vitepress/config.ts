@@ -169,6 +169,7 @@ export default defineConfig({
   lang: "zh-CN",
   title: "vue3 ui libarary",
   description: "Just playing around.",
+  base: process.env.NODE_ENV === 'production' ? '/vue-ui/' : '',
   lastUpdated: true,
   markdown: {
     lineNumbers: true,
